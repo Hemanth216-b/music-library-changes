@@ -1,0 +1,191 @@
+*{
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color:rgba(245,245,245,255);
+}
+.card{
+    position: relative;
+    width: 700px;
+    border: 1px solid lightgray;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.29);
+    padding: 70px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px;
+    color:white;
+}
+.card-body{
+    margin-top: -50px;
+    margin-left: -45px;
+}
+.card-img{
+    width:350px;
+    position: absolute;
+    right: 10px;
+    top: 100px;
+    border-radius: 14px;
+}
+
+.card-text{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 13px;
+    font-weight: bold;
+}
+.card-lab{
+    margin-right: 30px;
+    font-size: 16px;
+    margin-bottom: 13px;
+    margin-left: 20px;
+
+}
+.card-in1{
+    padding: 6px;
+    width: 290px;
+    border: 0px;
+    border-bottom: 1px solid black;
+    margin-left: 18px;
+    margin-bottom: 13px;
+    background-color: white;
+
+}
+.card-lab2{
+    margin-right: 30px;
+    font-size: 16px;
+    margin-bottom: 13px;
+    margin-left: 20px;
+
+}
+.card-in2{
+    padding: 6px;
+    border: 0px;
+    border-bottom: 1px solid black;
+    width: 130px;
+    margin-left: 18px;
+    margin-bottom: 13px;
+    background-color: white;
+}
+.card-lab3{
+    margin-right: 30px;
+    font-size: 16px;
+    margin-bottom: 13px;
+    margin-left: 20px;
+}
+.card-in3{
+    padding: 6px;
+    border: 0px;
+    border-bottom: 1px solid black;
+    width: 150px;
+    margin-left: 18px;
+    margin-bottom: 13px;
+    background-color: white;
+}
+.card-lab4{
+    margin-right: 30px;
+    font-size: 16px;
+    margin-bottom: 13px;
+    margin-left: 20px;
+}
+.card-grn{
+    width: 108px;
+    border: 0px;
+    border-right: 1px solid black;
+}
+.card-in4{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 13px;
+}
+.card-pro{
+    
+}
+
+.card-lab5{
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.card-in6{
+    padding: 6px;
+    width: 280px;
+    border: 0px;
+    border-bottom: 1px solid black;
+    margin-left: 20px;
+    margin-bottom: 13px;
+    
+}
+.card-profile{
+    margin-bottom: 15px;
+    margin-left: 15px;
+    
+}
+.card-pass{
+    margin-left: 20px;
+    flex-direction: row;
+    justify-content: center;
+}
+.card-in7{
+    padding: 6px;
+    width: 280px;
+    border: 0px;
+    border-bottom: 1px solid black;
+    margin-left: 0px;
+    margin-bottom: 13px;
+    background-color: white;
+
+}
+.card-la{
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.card-access{
+    margin-left: 20px;
+    width: 100px;
+    border: 0px;
+    border-right: 1px solid black;
+}
+.card-dob{
+    font-size: 16px;
+    margin-left: 15px;
+}
+.card-sign{
+    margin-top: 30px;
+    background-color:rgba(73,235,254,255);
+    color: white;
+    width: 300px;
+    margin-left: -30px;
+    padding: 5px;
+    text-shadow: 0px 0px 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.card-sign:hover{
+    background: rgba(73,235,254,255);
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(73,235,254,255),
+              0 0 25px rgba(73,235,254,255),
+              0 0 50px rgba(73,235,254,255),
+              0 0 100px rgba(73,235,254,255);
+}
+.input-card{
+    display: flex;
+    
+}
+.btn-card{
+    display: flex;
+}
+.card-sel{
+    width: 90px;
+}
+.card-input{
+    border-radius: 15px;
+    background-color: rgba(248, 248, 248, 0.816);
+    color: black;
+}
+.flex{
+    display: flex;
+}
