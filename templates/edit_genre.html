@@ -1,0 +1,32 @@
+{% include 'ahead.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/pictures/main.css">
+    <title>music</title>
+</head>
+
+   <div class="card-genres">
+            <div class="card-cat">
+                <div class="card-info">
+                    <form action="edit_genre_action" method="post">
+                        <div>
+                            <div class="gen-txt"><h1>Edit Genre Name</h1></div>
+                            <div class="">
+                                <label class="genre_name">Genre Name</label><br>
+                                <input type="text" class="genr-inp" name="genre_name" id="genre_name" placeholder="Enter Genre Name" required>
+                            </div>
+                            <input type="hidden" name="genre_id" value="{{genre_id}}">
+                            <div class="gen-cat-btn">
+                                <input type="submit" value="Change" class="cat-btn">
+                            </div>
+                            <div>{{message}}</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+   </div>
+
+</html>

@@ -1,0 +1,162 @@
+{% include 'uhead.html'%}
+<body class="user-songs-bg">
+<div class="card-song-search">
+    {% set is_sub = is_subscribed() %}
+    {% if playlist==None %}
+        <form action="user_songs">
+            <div class="card-mn">
+                    <div class="w-30">
+                        <select id="choose_genres" name="genre_id"   class="gen-sch">
+                            <option value=""> Choose Genres</option>
+                            {% for genre in genres: %}
+                            <option value="{{genre['_id']}}" {% if str(genre['_id']) == str(genre_id)%} selected {% endif %}>{{genre['genre_name']}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="sng">
+                        <input type="search" name="keyword"  class="sng-sch" value="{{keyword}}" placeholder="Search Songs">
+                    </div>
+                    <div class="card-butn">
+                            <button type="submit" class="sng-bbtn" value="search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                            <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018"/>
+                            <path d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11"/>
+                            </svg></button>
+                    </div>
+            </div>
+        </form>
+    {% else %}
+        <div class="plyst-nm">{{playlist['playlist_name']}}</div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="w-50">
+        <div class="usg-tx"><h1>Albums</h1></div>
+            <div class="card-user-head">
+                {% for album in albums: %}
+                {% set genre=get_genre_by_genre_id(album['genre_id']) %}
+                {% set band=get_band_by_band_id(album['band_id'])%}
+                {% set songs= get_songs_by_album_id(album['_id']) %}
+                <div class="row">
+                    <div class="w-30 album">
+                        <div><img class="card-img" src="../static/poster/{{album['poster']}}"></div>
+                        <div class="bg-trans"></div>
+                        <div class="card-body album-body">  
+                            <a href="buy?album_id={{album['_id']}}" class="lik-buy-alnk">Buy</a>  
+                            <div class="card-alb">{{album['album_name']}}</div>
+                            <div class="card-nma">{{band['band_name']}}</div>
+                            <div class="row space-between">
+                                <div class="card-bnd">{{genre['genre_name']}}</div>
+                                <div class="card-bnd text-right">$ {{album['price']}}</div>
+                            </div>
+                            <div class="link-icon-plyst">
+                                {% if is_brought or is_sub %}
+                                <a href="add_to_playlist?album_id={{album['_id']}}" class="icon-bbtn" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                </svg></a>
+                                {% endif %}
+                            </div>
+                            {% if playlist!=None %}
+                                <div class="link-icon-plyst2">
+                                <a href="remove_playlist?album_id={{album['_id']}}&playlist_id={{playlist['_id']}}" class="icon-bbtn"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                  </svg></a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="w-70 overflow-auto">
+                        {% for song in songs %}
+                        {% set is_brought = is_user_brought_song(song['_id']) %}
+                            <div class="row">
+                                <div class="w-20">
+                                    <div class="card-det-use">
+                                        <div class=""><img class="card-image-small" src="../static/song_poster/{{song['song_poster']}}"></div>
+                                    </div>
+                                </div>
+                                <div class="w-50 card-durprc">
+                                    <div class="card-audio-use">
+                                        {% if is_brought or is_sub or song['is_demo_song']=='yes' %}
+                                        <audio id="card-aud1" controls controlsList="nodownload noplaybackrate">
+                                          <source src="../static/song/{{song['song']}}" type="audio/mpeg">
+                                        </audio>
+                                        {% else %}
+                                            <div>
+                                                <a href="buy?song_id={{song['_id']}}" class="lik-buy-a">Buy</a>
+                                            </div>
+                                        {% endif %}
+                                        <div class="text-center">Song {{song['song_name']}}</div>
+                                   </div>
+                                </div>
+                                <div class="w-20">
+                                    <div class="card-dur">{{song['duration']}}</div>
+                                    <div class="crad-use-txt">${{song['price']}}</div>
+
+                                    <div class="card-ply-fav">
+                                        {% if is_brought or is_sub %}
+                                            <a href="add_to_playlist?song_id={{song['_id']}}" class="icon-fav" style="color: red;" ><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                            </svg></a>
+                                        {% endif %}
+                                    </div>
+                                    {% if playlist!=None %}
+                                        <div class="card-ply-fav">
+                                                <a href="remove_playlist?song_id={{song['_id']}}&playlist_id={{playlist['_id']}}" class="card-ply-fav"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                              <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                            </svg></a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+    </div>
+    <div class="w-50">
+        <div class="card-sng-tx"><h1>Songs</h1></div>
+        <div class="card-user-sng ">        
+                {% for song in songs: %}
+                {% set is_brought = is_user_brought_song(song['_id']) %}
+                {% set album = get_album_by_album_id(song['album_id']) %}
+                        <div class="card-pot w-23 mb-30 ">
+                            <div class="card-hd">
+                                <div>
+                                    <img class="card-simg" src="../static/song_poster/{{song['song_poster']}}"></div>
+                                </div>
+
+                                <div class="card-dte">
+                                        <div class="sng-nm"><h4>Song- {{song['song_name']}}</h4></div>
+                                        <div class="card-dur">{{song['duration']}}</div>
+                                        <div class="card-alm-id">Artist- {{album['album_name']}}</div>
+
+                                        <div class="card-">${{song['price']}}</div>
+                                    {% if is_brought or is_sub %}
+                                        <a href="add_to_playlist?song_id={{song['_id']}}" class="icon-fav2" style="color: red;" ><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                          </svg></a>
+                                    {% endif %}
+                                          {% if playlist!=None %}
+                                            <div class="card-ply-fav">
+                                                    <a href="remove_playlist?song_id={{song['_id']}}&playlist_id={{playlist['_id']}}" class="card-ply-fav2"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                                </svg></a>
+                                            </div>
+                                          {% endif %}  
+                                {% if is_brought or is_sub or song['is_demo_song']=='yes' %}
+                                    <audio class="post-aud" controls>
+                                        <source src="../static/song/{{song['song']}}" type="audio/ogg">
+                                        <source src="../static/song/{{song['song']}}" type="audio/mpeg">
+                                    </audio>
+                                {% else %}
+                                    <a href="buy?song_id={{song['_id']}}" class="lik-buy-a">Buy</a>
+                                {% endif %}
+                                </div>
+                        </div>
+                {% endfor %}
+        </div>        
+    </div>
+</div>
+</body>

@@ -1,0 +1,57 @@
+{% if session['role'] == "user"%}
+    {% include 'uhead.html' %}
+{% endif %}
+
+{% if session['role'] == "band"%}
+  {% include 'bhead.html'%}
+{% endif %}
+
+{% if session['role'] == "admin"%}
+  {% include 'ahead.html'%}
+{% endif %}
+
+<div class="card">
+    <table border="2" class="table">
+        <thead>
+            <tr>
+                <th>Card Type</th>
+                <th>Card Number</th>
+                <th>CVV</th>
+                <th>Expire Date</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Transaction_id</th>
+                <th>User id</th>
+                <th>Price</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            {% set user = get_users_by_user_id(payment['user_id']) %}
+                <tr>
+                    <td>{{payment['card_type']}}</td>
+                    <td>{{payment['card_number']}}</td>
+                    <td>{{payment['cvv']}}</td>
+                    <td>{{payment['expire_date']}}</td>
+                    <td>{{payment['date'].strftime("%d-%m-%Y %I:%M %p")}}</td>
+                    <td>{{payment['status']}}</td>
+                    <td>{{payment['transaction_id']}}</td>
+                    <td>{{user['first_name']}} {{user['last_name']}}</td>
+                    <td>
+                        {% if 'admin_price' in payment %}
+                        <div>Admin: $ {{payment['admin_price']}}</div>
+                        {% endif %}
+                        {% if 'band_price' in payment %}
+                        <div>Band: $ {{payment['band_price']}}</div>
+                        {% endif %}
+                        {% if 'price' in payment %}
+                        <div>Price: $ {{payment['price']}}</div>
+                        {% endif %}
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

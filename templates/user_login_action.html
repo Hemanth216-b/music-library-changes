@@ -1,0 +1,24 @@
+{% include 'head.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/pictures/index.css">
+    <title>music</title>
+</head>
+<body>
+    <div class="login-box">
+      <h2>Email verification</h2>
+      <form action="user_login_action2" method="post">
+         <div class="user-box">
+              <input type="number" name="otp" placeholder="Enter OTP">
+              <label>Enter OTP</label>
+         </div>
+          <input type="hidden" name="email" value="{{email}}">
+          <input type="text" name="otp2" value="{{otp}}">
+         <input type="submit" value="Login" class="usr-btn">
+      </form>
+    </div>
+</body>
+</html>

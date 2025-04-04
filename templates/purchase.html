@@ -1,0 +1,47 @@
+{% include 'uhead.html' %}
+
+    <form action="purchase_action" method="post">
+            <div class="row purchase-card space-around">
+                        <div class="w-45 mt-20">
+                            <div class="mt-20 text-center  card-purchase-dsp ">Package Name : {{package_name}}</div>
+                            <div class="mt-20  card-purchase-dsp text-center ">Days: {{days}}</div>
+                            <div class="mt-20  card-purchase-dsp text-center ">Start Date: {{enrollment_start_date.strftime("%d-%m-%Y %I:%H %p")}}</div>
+                            <div class="mt-20  card-purchase-dsp text-center ">End date: {{enrollment_end_date.strftime("%d-%m-%Y %I:%H %p")}}</div>
+                        </div>
+                        <div class="w-45">
+                            <div class=""><h2>Pay : ${{price}}</h2></div>
+                                <input type="hidden" name="package_name" value="{{package_name}}">
+                                <input type="hidden" name="days" value="{{days}}">
+                                <input type="hidden" name="price" value="{{price}}">
+                                <input type="hidden" name="enrollment_start_date" value="{{enrollment_start_date.strftime('%Y-%m-%dT%H:%M')}}">
+                                <input type="hidden" name="enrollment_end_date" value="{{enrollment_end_date.strftime('%Y-%m-%dT%H:%M')}}">
+                                <div class="card-card-type mt-20">
+                                    <label for="card_type" class="font-size" >Card Type</label><br>
+                                    <select name="card_type" id="card_type" class="card-ty-dd mt-10px mb-10">
+                                        <option value="debit_card">Depit Card</option>
+                                        <option value="credit_card">Credit Card</option>
+                                     </select>
+                                </div>
+                                <div class="card-card-number">
+                                    <label for="card_number" class="font-size">Card Number</label><br>
+                                    <input type="number" name="card_number" id="card_number" class="card-nm-ip mt-10px mb-10" placeholder="Enter Card Number" required>
+                                </div>
+                                <div class="card-holder-name">
+                                    <label for="holder_name" class="font-size">Holder Name</label><br>
+                                    <input type="text" name="holder_name" id="holder_name" class="card-nm-ip mt-10px mb-10" placeholder="Enter Holder Name" required>
+                                </div>
+                                <div class="card-cvv">
+                                    <label for="cvv" class="font-size">Enter CVV</label><br>
+                                    <input type="number" name="cvv" id="cvv" class="card-nm-ip mt-10px mb-10" placeholder="Enter CVV" required>
+                                </div>
+                                <div class="card-expire-date">
+                                    <label for="expire_date" class="font-size">Expire Date</label><br>
+                                    <input type="text" name="expire_date" class="card-nm-ip mt-10px mb-10" id="expire_date">
+                                </div>
+                                <div class="card-pymt-btn">
+                                    <button type="submit" class="pymt-sng-bttn">Payment</button>
+                                </div>
+                        </div>
+            </div>
+    </form>
+

@@ -1,0 +1,36 @@
+{% include 'head.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/pictures/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card-genres">
+            <div class="card-cat">
+                <div class="card-info" style="background-color: rgba(0, 0, 0, 0.57); color: white;">
+                    <form action="band_members_actions" method="post">
+                        <input type="hidden" name="band_members_count" value="{{band_members_count}}">
+                        <input type="hidden" name="band_id" value="{{band_id}}">
+
+                        <div>
+                            <div class="gen-txt"><h1>Add Band Members</h1></div>
+                            {% for i in range(int(band_members_count)) %}
+                            <div class="">
+                                <label class="band_member">Band MembersName</label><br>
+                                <input type="text" class="genr-inp" name="band_member{{i}}" id="band_member" placeholder="Enter band members names" required>
+                            </div>
+                            {% endfor %}
+                            <div class="gen-cat-btn">
+                                <input type="submit" value="Add Members" class="cat-btn" style="background-color: white;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+</body>
+</html>

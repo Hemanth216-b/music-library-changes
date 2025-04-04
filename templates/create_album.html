@@ -1,0 +1,96 @@
+{% include 'bhead.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/pictures/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card-album">
+            <div class="card-det">
+                    <form action="create_album_action" method="post" enctype="multipart/form-data">
+                        <div class="card-al">
+                            <div class="crad-txt1"><h2>Create Album</h2></div>
+                                <div class="card-nam">
+                                    <label for="album_name" class="alb-nam" >Album Name</label><br>
+                                    <input type="text" name="album_name" id="album_name"  class="alb-nm" placeholder="Enter Album Name" required>
+                                </div>
+                                <div class="card-drp">
+                                    <label for="choose_genres" class="card-grn">Choose Genres</label><br>
+                                    <select id="choose_genres" name="genre_id"   class="chs-gen" required>
+                                        <option value=""> Choose Genres</option>
+                                        {% for genre in genres: %}
+                                        <option value="{{genre['_id']}}">{{genre['genre_name']}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="card-ps">
+                                    <label for="poster" class="pst-lb">Poster</label><br>
+                                    <input type="file" class="poster-in" name="poster" id="poster" placeholder="Add Poster" required>
+                                </div>
+                                <div class="card-prc">
+                                    <label for="price">Price</label> <br>
+                                    <input type="number" name="price" class="prc-in" id="price" placeholder="Enter Price" required>
+                                </div>
+                                <div class="card-sub">
+                                   <button type="submit" class="alb-btn">Create Album</button> 
+                                </div>
+                        </div>
+                             
+                    </form>
+            </div>
+
+            <div class="card-lst">
+                <form action="create_album">
+                    <div class="card-sch">
+                        <div class="w-30">
+                            <select id="choose_genres" name="genre_id"   class="gen-sch">
+                                <option value=""> Choose Genres</option>
+                                {% for genre in genres: %}
+                                <option value="{{genre['_id']}}" {% if str(genre['_id']) == str(genre_id)%} selected {% endif %}>{{genre['genre_name']}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="w-30 card-sh">
+                            <div class="sng">
+                                <input type="search" name="keyword"  class="genre-sch" value="{{keyword}}" placeholder="Search Album">
+                            </div>
+                        </div>
+                        <div class="w-30">
+                            <input type="submit" value="Search" class="crt-alb-sch">
+                        </div>
+                    </div>    
+                </form>
+                <div class="">
+                    <div class="card-txt"><h1>Albums</h1></div>
+                        <div class="row space-around album-details">
+                           {% for album in albums: %}
+                            {% set genre=get_genre_by_genre_id(album['genre_id']) %}
+                            {% set band=get_band_by_band_id(album['band_id'])%}
+                                <div class="w-23 album">
+                                    <div class="card-anlink text-center" style="">
+                                        <a href="payment?album_id={{album['_id']}}" class="card-anlink-bttn">view payments</a>
+                                    </div>
+                                    <a href="songs?album_id={{album['_id']}}" class="album-link">
+                                    <div><img class="card-img" src="../static/poster/{{album['poster']}}"></div>
+                                    <div class="bg-trans"></div>
+                                    <div class="card-body album-body">
+                                        <div class="card-alb">{{album['album_name']}}</div>
+                                        <div class="card-nma">{{band['band_name']}}</div>
+                                        <div class="row space-between">
+                                            <div class="card-bnd">{{genre['genre_name']}}</div>
+                                            <div class="card-bnd text-right">$ {{album['price']}}</div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                </div>
+            </div>
+    </div>
+</body>
+</html>

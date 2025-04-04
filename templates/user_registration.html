@@ -1,0 +1,71 @@
+{% include 'head.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/pictures/registration.css">
+    <title></title>
+</head>
+<body >
+    <div class="card">
+        <form action="user_registration_action" class="" method="post" enctype="multipart/form-data">
+                <div class="card-head">
+                      <div><img  class="card-img" src="https://images.unsplash.com/photo-1603686872523-f72035397760?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+                    <div class="card-body">
+                        <div class=" card-text"><h2>Sign In</h2></div>
+                        <div class="card-user">
+                            <label class="card-lab" for="user_name">User Name</label><br>
+                            <input type="text" name="user_name" class="card-in1 card-input" id="user_name" placeholder="Your Name" required>
+                        </div>
+                        <div class="flex">
+                            <div class="card-first">
+                                <label class="card-lab2" for="first_name">First Name</label><br>
+                                <input type="text" name="first_name" class="card-in2 card-input" id="first_name" required placeholder="Your First Name">
+                            </div>
+                            <div class="card-last">
+                                <label for="last_name" class="card-lab3">Last name</label><br>
+                                <input type="text" name="last_name" class="card-in3 card-input" id="last_name" placeholder="Your Last Name" required>
+                            </div>
+                        </div>    
+                        <div class="card-mail">
+                            <label for="email" class="card-lab5">Email</label><br>
+                            <input type="email" name="email" id="email" class="card-in6 card-input" placeholder="Your Email" required>
+                        </div>
+                        <div class="card-pass">
+                            <label for="password" class="la">Password</label><br>
+                            <input type="password" name="password" class="card-in7 card-input" id="password" required placeholder="Enter Password">
+                        </div>
+                        <div class="card-pass">
+                            <label for="confirm_password" class="la">Confirm Password</label><br>
+                            <input type="password" name="confirm_password" class="card-in7 card-input" id="confirm_password" required placeholder="Enter confirm Password">
+                        </div>
+                        <div class="card-pass">
+                            <label for="address" class="la">Address</label><br>
+                            <input type="text" name="address" class="card-in7 card-input" id="address" required placeholder="Enter Address">
+                        </div>
+                        <div class="card-pass">
+                            <label for="zipcode" class="la">Zipcode</label><br>
+                            <input type="number" name="zipcode" class="card-in7 card-input" id="zipcode" required placeholder="Enter Zipcode">
+                        </div>
+                        <div class="card-pass">
+                            <label for="phone_number" class="la">Phone Number</label><br>
+                            <input type="number" name="phone_number" class="card-in7 card-input" id="phone_number" required placeholder="Enter Phone Number">
+                        </div>
+                        <div class="btn-card">
+                            <div class="card-dob">
+                                <label for="dob">DOB</label><br>
+                                <input type="date" name="dob" id="dob" value="11/19/2003">
+                            </div>
+                        </div>
+                        <div class="card-frnd"></div>
+                        </div>
+                        <div>
+                            <input type="submit" class="card-sign " value="Sign Up">
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</body>
+</html>

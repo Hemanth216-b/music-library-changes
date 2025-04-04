@@ -1,0 +1,65 @@
+{% include 'ahead.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/pictures/main.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="card-table">
+        {% for band in bands %}
+            <div class="card">
+                <div><h3>Band Details</h3></div>    
+                    <div class="card-name">
+                        <label for=""><h5>Band First Name</h5></label>
+                        {{band['band_firstname']}}
+                    </div>
+                    <div class="card-name">
+                        <label for=""><h5>Band Last Name</h5></label>
+                        {{band['band_lastname']}}
+                    </div>
+                    <div class="card-name">
+                        <label for=""><h5>Band Name</h5></label>
+                        {{band['band_name']}}
+                    </div>
+                    <div class="card-mail">
+                        <label for=""><h5>Email</h5></label>
+                        {{band['email']}}
+                    </div>
+                    <div class="card-ph">
+                        <label for=""><h5>phone</h5></label>
+                        {{band['phone_number']}}
+                    </div>
+                    <div class="card-bio">
+                        <label for=""><h5>zipcode</h5></label>
+                        {{band['zipcode']}}
+                    </div>
+                     <div class="card-bio">
+                        <label for=""><h5>Band Members</h5></label>
+                        {{band['band_members']}}
+                    </div>
+                    <div class="card-sts">
+                        <label for=""><h5>Status</h5></label>
+                        {{band['status']}}
+                    </div>
+                    <div class="row">
+                        <div class="card-btn">
+                            {% if band['status'] == "deactivated" %}
+                                <a href="verify?band_id={{band['_id']}}" class="verify-btn" >Activate</a>
+                            {% else %}
+                                    <a href="unverified?band_id={{band['_id']}}" class="verify-btn" >Deactivate</a>
+                            {% endif %}
+                        </div>
+                        <div class="card-btn">
+                            {% if band['status'] == "verified" %}
+                                <a href="payment?band_id={{band['_id']}}" class="verify-btn" >View Payments</a>
+                            {% endif %}
+                        </div>
+                    </div>
+            </div>
+        {% endfor %}
+    </div>
+

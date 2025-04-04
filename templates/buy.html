@@ -1,0 +1,59 @@
+{% include 'uhead.html' %}
+
+<div class="card-head-payment">
+    <form action="buy_action" method="post">
+
+        <div class="card-payment-det">
+            <div class="card-hid">
+                <input type="hidden" name="song_id" id="song_id" value="{{(song_id)}}">
+                <input type="hidden" name="album_id" id="album_id" value="{{album_id}}">
+                <input type="hidden" name="playlist_id" id="playlist_id" value="{{playlist_id}}">
+                {% if song_id!="" %}
+                    <input type="hidden" name="price" value="{{(song['price'])}}">
+                    <div class="song-price">
+                        <div class="by-price"><h2>Song : {{song['song_name']}}</h2></div>
+                        <div class="by-price"><h2>Price:  ${{song['price']}}</h2></div>
+                    </div>
+                {% elif album_id!="" %}
+                    <input type="hidden" name="price" value="{{(album['price'])}}">
+                    <div class="song-price">
+                        <div class="by-price"><h2>Album : {{album['album_name']}}</h2></div>
+                        <div class="by-price"><h2>Price  ${{album['price']}}</h2></div>
+                    </div>
+                {% elif playlist_id!="" %}
+                    <input type="hidden" name="price" value="{{(playlist_price)}}">
+                    <div class="song-price">
+                        <div class="by-price"><h2>Playlist : {{playlist['playlist_name']}}</h2></div>
+                        <div class="by-price"><h2>Price  ${{playlist_price}}</h2></div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-card-type">
+                <label for="card_type" class="font-size">Card Type</label><br>
+                <select name="card_type" id="card_type" class="card-ty-dd mt-10px mb-10">
+                    <option value="debit_card">Depit Card</option>
+                    <option value="credit_card">Credit Card</option>
+                 </select>
+            </div>
+            <div class="card-card-number">
+                <label for="card_number" class="font-size">Card Number</label><br>
+                <input type="number" name="card_number" id="card_number" class="card-nm-ip mt-10px mb-10" placeholder="Enter Card Number" required>
+            </div>
+            <div class="card-holder-name">
+                <label for="holder_name" class="font-size">Holder Name</label><br>
+                <input type="text" name="holder_name" id="holder_name" class="card-nm-ip mt-10px mb-10" placeholder="Enter Holder Name" required>
+            </div>
+            <div class="card-cvv">
+                <label for="cvv" class="font-size">Enter CVV</label><br>
+                <input type="number" name="cvv" id="cvv" class="card-nm-ip mt-10px mb-10" placeholder="Enter CVV" required>
+            </div>
+            <div class="card-expire-date">
+                <label for="expire_date" class="font-size">Expire Date</label><br>
+                <input type="text" name="expire_date" class="card-nm-ip mt-10px mb-10" id="expire_date">
+            </div>
+            <div class="card-pymt-btn">
+                <button type="submit" class="pymt-sng-bttn">Payment</button>
+            </div>
+        </div>    
+    </form>
+</div>

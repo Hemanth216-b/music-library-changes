@@ -1,0 +1,50 @@
+{% include 'uhead.html'%}
+<div class="w-50 m-auto" style="">
+    <div class="card p-10">
+        <div class="mt-5">
+            <div>Name</div>
+            <div style="font-weight:bolder">{{user['first_name']}} {{user['last_name']}} </div>
+        </div>
+        <div class="mt-5">
+            <div>E-Mail</div>
+            <div style="font-weight:bolder">{{user['email']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Address</div>
+            <div style="font-weight:bolder">{{user['address']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Zipcode</div>
+            <div style="font-weight:bolder">{{user['zipcode']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Phone Number</div>
+            <div style="font-weight:bolder">{{user['phone_number']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Date Of Birth</div>
+            <div style="font-weight:bolder">{{user['dob']}}</div>
+        </div>
+        <hr>
+        <div class="mt-5">
+            <div>Package Name</div>
+            <div style="font-weight:bolder">{{user['package_name']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>No.of Days</div>
+            <div style="font-weight:bolder">{{user['days']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Subscription Start Date</div>
+            <div style="font-weight:bolder">{{user['enrollment_start_date']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Subscription End Date </div>
+            <div style="font-weight:bolder">{{user['enrollment_end_date']}}</div>
+        </div>
+        <div class="mt-5">
+            <div>Price</div>
+            <div style="font-weight:bolder">$ {{user['price']}}</div>
+        </div>
+    </div>
+</div>

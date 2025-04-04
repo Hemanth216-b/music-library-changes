@@ -1,0 +1,15 @@
+{% if session['role'] == "user"%}
+    {% include 'uhead.html' %}
+{% endif %}
+
+{% if session['role'] == "band"%}
+  {% include 'bhead.html'%}
+{% endif %}
+
+{% if session['role'] == "admin"%}
+  {% include 'ahead.html'%}
+{% endif %}
+<body class="message-page">
+    <div class="message-text"><h1>{{message}}</h1></div>
+</body>
+

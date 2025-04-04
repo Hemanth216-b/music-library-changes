@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./static/pictures/band.css">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<section class="forms-section">
+  <h1 class="section-title">Music Library</h1>
+  <div class="forms">
+    <div class="form-wrapper is-active">
+      <button type="button" class="switcher switcher-login">
+        Login
+        <span class="underline"></span>
+      </button>
+      <form action="band_login_action" method="post" class="form form-login">
+        <fieldset>
+          <legend>Please, enter your email and password for login.</legend>
+          <div class="input-block">
+            <label for="login-email" style="color: black;">E-mail</label>
+            <input id="login-email" name="email" type="email" required>
+          </div>
+          <div class="input-block">
+            <label for="login-password" style="color: black;" >Password</label>
+            <input id="login-password" name="password" type="password" required>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn-login" style="color: black;">Login</button>
+      </form>
+    </div>
+    <div class="form-wrapper">
+      <button type="button" class="switcher switcher-signup">
+        Sign Up
+        <span class="underline"></span>
+      </button>
+        <div class="card-body-signin flex">
+          <form action="band_registration_action"  method="post" class="form form-signup">
+            <div class="signin-left">
+                <fieldset>
+                  <legend>Please, enter your email, password and password confirmation for sign up.</legend>
+                  <div class="input-block">
+                    <div class="input-block">
+<!--                      <label for="band_firstname" style="color: black;">First Name</label>-->
+<!--                      <input id="band_firstname" name="band_firstname" style="background-color: rgba(188,225,217,255);" type="text" required>-->
+                    </div>
+                    <div class="input-block">
+<!--                      <label for="band_lastname" style="color: black;">Last Name</label>-->
+<!--                      <input id="band_lastname" name="band_lastname" style="background-color: rgba(188,225,217,255);" type="text" required>-->
+                    </div>
+                    <div class="input-block">
+                      <label for="band_name" style="color: black;">Band Name</label>
+                      <input id="band_name" name="band_name" style="background-color: rgba(188,225,217,255);" type="text" required>
+                    </div>
+                    <div class="input-block">
+                      <label for="signup-password" style="color: black;">Password</label>
+                      <input id="signup-password" name="password" style="background-color: rgba(188,225,217,255);" type="password" required>
+                    </div>
+                    <div class="input-block">
+                      <label for="confirm_password" style="color: black;">Confirm Password</label>
+                      <input id="confirm_password" name="confirm_password" style="background-color: rgba(188,225,217,255);" type="password" required>
+                    </div>
+                    <label for="signup-email" style="color: black;">E-mail</label>
+                    <input id="signup-email" type="email" name="email" style="background-color: rgba(188,225,217,255);" required>
+                  </div>
+                  <div class="input-block">
+                    <label for="address" style="color: black;">Address</label>
+                    <input id="address" type="text" name="address" style="background-color: rgba(188,225,217,255);" required>
+                  </div>
+                  <div class="input-block">
+                    <label for="zipcode" style="color: black;">Zipcode</label>
+                    <input id="zipcode" type="number" name="zipcode" style="background-color: rgba(188,225,217,255);" required>
+                  </div>
+                  <div class="input-block" style="color: black;">
+                    <label for="phone_number" style="color: black;" >Phone Number</label>
+                    <input id="phone_number" name="phone_number" type="number" style="background-color: rgba(188,225,217,255);" required min="1000000000" max="9999999999">
+                  </div>
+                  <div class="input-block" style="color: black;">
+                    <label for="band_member" style="color: black;" >Band Members</label>
+                    <input id="band_member" name="band_member" type="text" style="background-color: rgba(188,225,217,255);" required>
+                  </div>
+                  <button type="submit" class="btn-signup" style="color: black;" >Continue</button>
+                </fieldset>
+            </div> 
+          </form>
+        </div>  
+    </div>
+  </div>
+</section>
+<script>const switchers = [...document.querySelectorAll('.switcher')]
+
+  switchers.forEach(item => {
+    item.addEventListener('click', function() {
+      switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+      this.parentElement.classList.add('is-active')
+    })
+  })</script>

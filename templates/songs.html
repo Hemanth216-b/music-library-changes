@@ -1,0 +1,91 @@
+{% include 'bhead.html'%}
+
+<div class="row space-around">
+     <div class="card-songs space-around">
+        <form action="songs_action" method="post" enctype="multipart/form-data">
+            <div class="card-sng">
+                <div class="crad-txt1"><h2>Add songs</h2></div>
+                    <div class="card-nam">
+                        <label for="song_name" class="alb-nam" >Songs Name</label><br>
+                        <input type="text" name="song_name"  id="song_name"  class="alb-nm" placeholder="Enter Song Name" required>
+                    </div>
+                    <div class="card-ps">
+                        <label for="poster" class="pst-lb">Poster</label><br>
+                        <input type="file" class="poster-in" name="poster" id="poster" placeholder="Add Poster" required>
+                    </div>
+                    <div class="card-ps">
+                        <label for="song" class="aud-sng">Choose Song</label><br>
+                        <input type="file" class="poster-in" name="song" id="song"  placeholder="Choose Song" required>
+                    </div>
+                    <div class="card-duration">
+                        <label for="duration">Duration</label><br>  
+                        <input type="text" id="duration" name="duration" class="dur-tm" required placeholder="Enter Duration">
+                    </div>
+                    <div class="card-alb-in">
+                         <input type="hidden" name="album_id" value="{{album['_id']}}">
+                    </div>
+                    <div class="card-prc">
+                        <label for="price" class="dsp-pri">Price</label> <br>
+                        <input type="number" name="price" class="prc-in" id="price" placeholder="Enter Price" required>
+                    </div>
+                    <div class="card-prc">
+                        <label for="price" class="dsp-pri">Is Demo Song</label> <br>
+                        <input type="checkbox" name="is_demo_song" id="yes" class="prc-in" value="yes"><label for="yes">Yes</label>
+                        <input type="checkbox" name="is_demo_song" id="no" class="prc-in" value="no" checked><label for="no">No</label>
+                    </div>
+                    <div class="card-sub">
+                       <button type="submit" class="alb-btn">Add Song</button>
+                    </div>
+            </div>
+                 
+        </form>
+     </div>
+     <div class="card-display">
+         <form action="songs">
+                <div class="card-mn">
+                    <div class="w-30">
+                        <select id="choose_genres" name="genre_id"   class="gen-sch">
+                            <option value=""> Choose Genres</option>
+                            {% for genre in genres: %}
+                            <option value="{{genre['_id']}}" {% if str(genre['_id']) == str(genre_id)%} selected {% endif %}>{{genre['genre_name']}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                        <div class="sng">
+                            <input type="search" name="keyword"  class="sng-sch" value="{{keyword}}" placeholder="Search Songs">
+                        </div>
+                        <div class="card-butn">
+                                <button type="submit" class="sng-bbtn" value="search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018"/>
+                                <path d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11"/>
+                                </svg></button>
+                        </div>
+                </div>
+         </form>
+            <div class="card-txt"><h1>Songs</h1></div> 
+                <div class="row space-around">
+                    {% for song in songs: %}
+                    {% set album = get_album_by_album_id(song['album_id']) %}
+                            <div class="card-pot w-23 ">
+                                <div class="card-hd">
+                                    <div>
+                                        <img class="card-simg" src="../static/song_poster/{{song['song_poster']}}"></div>
+                                    </div>   
+                                             
+                                    <div class="card-dte">
+                                            <div class="sng-nm"><h4>Song- {{song['song_name']}}</h4></div>
+                                            <div class="card-dur">{{song['duration']}}</div>
+                                            <div class="card-alm-id">Artist- {{album['album_name']}}</div>
+                                            <div class="card-">{{song['status']}}</div>
+                                            <div class="card-">${{song['price']}}</div>
+                                            <audio class="post-aud" controls>
+                                                <source src="../static/song/{{song['song']}}" type="audio/ogg">
+                                                <source src="../static/song/{{song['song']}}" type="audio/mpeg">
+                                            </audio>
+                                            <a href="payment?song_id={{song['_id']}}" class="card-alink-button">view payments</a>
+                                    </div>        
+                            </div>
+                    {% endfor %} 
+                </div>              
+     </div>
+</div>

@@ -1,0 +1,37 @@
+{% include'uhead.html' %}
+
+<div class="row" >
+    <div class="w-50">
+        <form action="playlist_action" method="post">
+            <div class="card-playlist">
+                <div class="card-txlab">
+                    <label class="playlist_name" for="playlist_name">Playlist Name</label><br>
+                    <input type="text" class="playlist_inp" name="playlist_name" id="playlist_name" placeholder="Enter Playlist" required >
+                </div>
+                <div class="card-ply-btn">
+                    <button type="submit" class="playlist-btn">Add Playlist</button>
+                </div>
+            </div>    
+        </form>
+    </div>
+    <div class="w-50">
+            <div class="card-pylt">
+                    <div class="ply-txt"><h1>Playlist</h1></div>
+                    {% for playlist in playlists %}
+                    <div class="row space-between card-ply-det">
+                        <div class="w-50">
+                            <div class="card-ply-nm"><h3>{{playlist['playlist_name']}}</h3></div>
+                        </div>
+                        <div class="w-20">
+                            <a href="user_songs?playlist_id={{playlist['_id']}}" class="ply-alink">View</a>
+                        </div>
+                        <div class="w-20">
+                            <a href="buy?playlist_id={{playlist['_id']}}" class="ply-alink">Purchase</a>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+            </div>    
+    </div>
+</div>
+

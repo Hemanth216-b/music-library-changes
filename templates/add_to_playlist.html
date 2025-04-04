@@ -1,0 +1,14 @@
+{% include 'uhead.html' %}
+<div class="row">
+    {% for playlist in playlists %}
+    <div class=" w-23">
+        <a href="add_to_playlist_action?song_id={{song_id}}&playlist_id={{playlist['_id']}}&album_id={{album_id}}" class="link-plylst">
+            <div class="card-select-plst">
+                <div class="">{{playlist['playlist_name']}}</div>
+            </div>   
+        </a>    
+    </div>        
+    {% endfor %}    
+</div>
+
+           
